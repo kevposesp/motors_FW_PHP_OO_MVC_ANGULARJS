@@ -1,0 +1,20 @@
+@include breakpoint(sm) {}
+@include breakpoint(md) {}
+@include breakpoint(lg) {}
+@include breakpoint(xl) {}
+@include breakpoint(xxl) {}
+@include breakpoint(sm, min) {
+    
+}
+@include breakpoint(md, min) {
+    
+}
+@include breakpoint(lg, min) {
+    
+}
+@include breakpoint(xl, min) {
+    
+}
+@include breakpoint(xxl, min) {
+    
+}

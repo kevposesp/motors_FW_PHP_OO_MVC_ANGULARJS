@@ -1,0 +1,23 @@
+.pagination {
+    .cont {
+        border: 1px solid $greyOne;
+        display: flex;
+        border-radius: 4px;
+        div {
+            padding: 3px 10px;
+            border-right: 1px solid $greyOne;
+            transition: 1s;
+            &:last-child {
+                border: none;
+            }
+            &.act {
+                background-color: $whiteFive;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $whiteFive;
+            }
+        }
+    }
+    
+}

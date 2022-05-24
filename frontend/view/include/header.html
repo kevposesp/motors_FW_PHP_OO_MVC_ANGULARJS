@@ -1,0 +1,100 @@
+<!-- ***** Preloader Start ***** -->
+<!-- <div id="js-preloader" class="js-preloader">
+  <div class="preloader-inner">
+    <span class="dot"></span>
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div> -->
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header id="myP" class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container pr-50">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="index.html" class="logo">
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li><a href="#/home" id="menu-home" class="module-menu" ng-class="{active: menuActive == 'home'}">Home</a></li>
+            <li><a href="#/shop" id="menu-shop" class="module-menu" ng-class="{active: menuActive == 'shop'}">Shop</a></li>
+            <li><a href="#/contact" id="menu-contact" class="module-menu" ng-class="{active: menuActive == 'contact'}">Contact Us</a></li>
+            <li class="menuheaderprofile">
+              <div class="main-white-button">
+                <a>
+                  <i>
+                    <img id="img_butt_menu" alt="" src="frontend/view/images/user.png">
+                  </i>
+                  <div id="username_butt_menu">
+
+                    Iniciar / Registrar</div>
+                </a>
+              </div>
+              <div class="desp-div-auth">
+                <div class="option" id="option-logout" data-tr="LogOut">LogOut</div>
+              </div>
+              <!-- <div class="main-white-button"><a><i class="fa fa-plus"></i> Add Your Listing</a></div> -->
+            </li>
+          </ul>
+          <a class="menu-trigger">
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="lang">
+    <select name="select-lang">
+      <option value="es" id="btn-es">es</option>
+      <option value="en" id="btn-en">en</option>
+      <option value="val" id="btn-val">val</option>
+    </select>
+  </div> -->
+  <div class="cont_search_home" id="cont_search_homent"></div>
+  <!-- <div class="cont_search_home" id="cont_search"></div> -->
+</header>
+<!-- ***** Header Area End ***** -->
+<script>
+  function loadButtonProfile() {
+    var conf = {}
+    conf.url = friendlyURL('?page=auth&op=infBut')
+    ajaxPromise(conf.url, 'POST', 'json')
+      .then(function (data) {
+        console.log(data);
+        if (data) {
+          // $('#username_butt_menu').append(data.username)
+          document.getElementById('username_butt_menu').value = data.username
+          document.getElementById('img_butt_menu').src = data.img_user
+          // $('#img_butt_menu').attr("src", data.img_user)
+        } else {
+          // $('#username_butt_menu').append("Iniciar / Registrar")
+          document.getElementById('username_butt_menu').value = "Iniciar / Registrar"
+          document.getElementById('img_butt_menu').src = "view/icons/images/user.png"
+          // $('#img_butt_menu').attr("src", "view/icons/images/user.png")
+        }
+      }).catch(function (e) {
+        console.log("error" + e);
+      })
+  }
+
+  var men = document.getElementsByClassName('menuheaderprofile')
+    if(localStorage.getItem('token')) {
+        men.on('click', function() {
+            men.toggleClass('active')
+        })
+    } else {
+        men.on('click', function() {
+            window.location.href = friendlyURL('?page=auth');
+        })
+        
+    }
+</script>

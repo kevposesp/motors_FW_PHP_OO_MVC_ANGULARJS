@@ -1,0 +1,52 @@
+.row_shop_car {
+    .img-prin {
+        height: 100%;
+        object-fit: cover;
+    }
+    .left-image {
+        width: 60%;
+    }
+    .hover-content {
+        &.like-cont {
+            top: 20px !important;
+            left: 20px !important;
+            right: inherit;
+            bottom: inherit;
+            background-color: $whiteThree;
+            padding: 0 5px;
+            border-radius: 100%;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .cardk {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+@include breakpoint(sm) {
+    
+}
+@include breakpoint(md) {
+    
+}
+@include breakpoint(lg) {
+    .row_shop_car {
+        .left-image {
+            width: 100%;
+        }
+    }
+}
+@include breakpoint(xl) {}
+@include breakpoint(xxl) {}
+
+@include breakpoint(sm, min) {}
+@include breakpoint(md, min) {
+    
+}
+@include breakpoint(lg, min) {}
+@include breakpoint(xl, min) {}
+@include breakpoint(xxl, min) {}

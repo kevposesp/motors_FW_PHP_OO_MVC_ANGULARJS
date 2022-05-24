@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="motors_FW_PHP_OO_MVC_ANGULARJS">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motors</title>
+
+    <!--================== ANGULAR JS ==================-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+
+    <script src="frontend/Router.js"></script>
+    <script src="frontend/APIConnector.js"></script>
+
+    <!-- Contact Controler - Service - Style -->
+    <script src="frontend/module/contact/controller/ContactController.js"></script>
+    <script src="frontend/module/contact/services/ContactService.js"></script>
+    <!-- <link rel="stylesheet" href="frontend/view/css/contact.css"> -->
+
+    <!-- Home Controller -->
+    <!-- <script src="frontend/module/home/controller/HomeController.js"></script> -->
+
+    <!-- Dynamic CSS -->
+    <!-- <script src="frontend/view/js/route-style.js"></script> -->
+    <!-- <link rel="stylesheet" ng-repeat="style in css" ng-href="{{ style }}"> -->
+    <!--================== /ANGULAR JS ==================-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="frontend/view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="frontend/view/css/fontawesome.css">
+    <link rel="stylesheet" href="frontend/view/css/templatemo-plot-listing.css">
+    <link rel="stylesheet" href="frontend/view/css/animated.css">
+    <link rel="stylesheet" href="frontend/view/css/owl.css">
+    <link rel="stylesheet" href="frontend/view/css/style.css">
+
+    <script src="https://kit.fontawesome.com/988f061567.js" crossorigin="anonymous"></script>
+
+    <!-- Alertify -->
+    <script src="frontend/view/vendor/alertify/alertify.min.js"></script>
+    <link rel="stylesheet" href="frontend/view/vendor/alertify/css/alertify.min.css" />
+    <link rel="stylesheet" href="frontend/view/vendor/alertify/css/themes/default.min.css" />
+
+</head>
+
+<body>
+    <div ng-include="'frontend/view/include/header.html'"></div>
+    <div ng-view autoscroll="true"></div>
+    <div ng-include="'frontend/view/include/footer.html'"></div>
+</body>
+
+<script src="frontend/view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="frontend/view/js/animation.js"></script>
+<script src="frontend/view/js/imagesloaded.js"></script>
+
+
+</html>

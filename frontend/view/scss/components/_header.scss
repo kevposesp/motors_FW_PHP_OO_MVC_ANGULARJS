@@ -1,0 +1,9 @@
+header {
+    z-index: 200 !important;
+    .lang {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(-10%, -50%);
+    }
+}

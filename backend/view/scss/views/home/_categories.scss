@@ -1,0 +1,28 @@
+.popular-categories {
+    .naccs {
+        .menu {
+            // color: initial !important;
+            // color: white !important;
+            // div {
+            //     background-color: #8d99af !important;
+            //     // padding: 0;
+                
+            //     &.active {
+            //         background-color: #2b2d42 !important;
+            //     }
+            // }
+            img {
+                max-width: 60px;
+                width: 60px;
+                margin-top: 7px;
+            }
+        }
+    }
+    .nacc {
+        height: initial !important;
+        padding: 20px !important;
+        li {
+            z-index: -1;
+        }
+    }
+}

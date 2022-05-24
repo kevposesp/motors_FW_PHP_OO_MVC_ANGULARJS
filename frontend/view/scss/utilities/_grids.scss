@@ -1,0 +1,95 @@
+.grid-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns:
+        calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc(
+            (100% / 12) - 10px
+        ) calc((100% / 12) - 10px )
+        calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc((100% / 12) - 10px) calc(
+            (100% / 12) - 10px
+        ) calc((100% / 12) - 10px);
+    grid-gap: 10px;
+    grid-template-rows: [row1] calc(50% - 5px) [row2] calc(50% - 5px);
+    margin-top: 10px;
+    &.g01 {
+        grid-template-areas:
+        "content-1 content-1 content-1 content-5 content-5 content-5 content-5 content-5 content-5 content-2 content-2 content-2"
+        "content-3 content-3 content-3 content-5 content-5 content-5 content-5 content-5 content-5 content-4 content-4 content-4";
+    }
+    &.g02 {
+        grid-template-areas:
+        "content-1 content-1 content-1 content-2 content-2 content-2 content-5 content-5 content-5 content-5 content-5 content-5"
+        "content-3 content-3 content-3 content-4 content-4 content-4 content-5 content-5 content-5 content-5 content-5 content-5";
+    }
+    &.g03 {
+        grid-template-areas:
+        "content-5 content-5 content-5 content-5 content-5 content-5 content-1 content-1 content-1 content-2 content-2 content-2"
+        "content-5 content-5 content-5 content-5 content-5 content-5 content-3 content-3 content-3 content-4 content-4 content-4";
+    }
+    text-align: center;
+    .grid-cell-1 {
+        grid-area: content-1;
+    }
+
+    .grid-cell-2 {
+        grid-area: content-2;
+    }
+
+    .grid-cell-3 {
+        grid-area: content-3;
+    }
+
+    .grid-cell-4 {
+        grid-area: content-4;
+    }
+
+    .grid-cell-5 {
+        grid-area: content-5;
+        .cont {
+            .title {
+                -webkit-line-clamp: 4 !important;
+            }
+            .desc {
+                -webkit-line-clamp: 11 !important;
+            }
+        }
+    }
+
+    .item {
+        background-color: $whiteThree;
+        border-radius: 4px;
+        overflow: hidden;
+        padding: 5px;
+        .img {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .cont {
+            padding: 10px 5px;
+            text-align: left;
+            .title {    
+                font-size: 16px;
+                font-weight: 600;
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+            .desc {
+                font-size: 12px;
+                font-weight: 400;
+                padding: 3px;
+
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+            .author {
+                border-top: 1px solid $whiteFive;
+                padding: 10px 5px 0px 5px;
+                word-break: break-all;
+            }
+        }
+    }
+}

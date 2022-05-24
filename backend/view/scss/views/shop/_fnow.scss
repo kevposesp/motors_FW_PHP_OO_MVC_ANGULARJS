@@ -1,0 +1,15 @@
+#cont_filters_now {
+    display: flex;
+    flex-wrap: wrap;
+    .dfiltnow {
+        background-color: $greyOne;
+        padding: 10px;
+        margin: 5px;
+        transition: 1s;
+        border-radius: 4px;
+        &:hover {
+            cursor: pointer;
+            background-color: $greyTwo;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>getSearchAttributes</name>
+        <uri>getSearchAttributes</uri>
+    </function>
+    <function>
+        <name>getSearchBrands</name>
+        <uri>getSearchBrands</uri>
+    </function>
+    <function>
+        <name>getSearchCity</name>
+        <uri>getSearchCity</uri>
+    </function>
+</functions>

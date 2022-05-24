@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view</name>
+        <uri>view</uri>
+    </function>
+    <function>
+        <name>list_cars_with_names</name>
+        <uri>list_cars_with_names</uri>
+    </function>
+    <function>
+        <name>read_car</name>
+        <uri>read_car</uri>
+    </function>
+    <function>
+        <name>getFilters</name>
+        <uri>getFilters</uri>
+    </function>
+    <function>
+        <name>read_releated_by_mark</name>
+        <uri>read_releated_by_mark</uri>
+    </function>
+    <function>
+        <name>setUnsetLike</name>
+        <uri>setUnsetLike</uri>
+    </function>
+</functions>
