@@ -1,19 +1,194 @@
 <div class="main-banner">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="top-text header-text">
-            <h6>Over 36,500+ Active Listings</h6>
-            <h2>Find Nearby Places &amp; Things</h2>
-          </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="top-text header-text">
+                    <h6>Over 36,500+ Active Listings</h6>
+                    <h2>Find Nearby Places &amp; Things</h2>
+                </div>
+            </div>
+            <!-- <div class="col-lg-12 cont_search_home" id="cont_search_home"> -->
+            <div class="col-lg-12 cont_search_home" id="cont_search_home">
+            </div>
+            <div class="col-lg-10 offset-lg-1">
+                <div class="swiper">
+                    <ul class="categories marks swiper-wrapper">
+                        <div class="swiper-slide" ng-repeat="mark in marks" ng-click="markClick()">
+                            <li class="item bot-shop"><span id="car-icon4" class="icon"><img
+                                        src="frontend/view/icons{{mark.img_mark}}"></span>{{mark.name_mark}}</li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <!-- <div class="col-lg-12 cont_search_home" id="cont_search_home"> -->
-        <div class="col-lg-12 cont_search_home" id="cont_search_home">
-        </div>
-        <div class="col-lg-10 offset-lg-1">
-          <ul class="categories marks owl-carousel owl-marks" id="marks-carousel">
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<div class="popular-categories">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>Categories</h2>
+                    <h6>Check Them Out</h6>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="naccs">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="menu" id="menu_categories_home">
+                                    <div ng-repeat="(key, category) in categories" id="{{key}}-thumb"
+                                        ng-class="{'first-thumb': key == 0, 'active': categoryActive == key}"
+                                        ng-click="changeCategory()">
+                                        <div id="first-thumb-child" class="thumb"><span id="first-thumb-span"
+                                                class="icon"><img
+                                                    src="frontend/view/icons{{category.icon_category}}"></span>{{category.name_category}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 align-self-center">
+                                <ul class="nacc">
+                                    <li ng-repeat="(key, category) in categories"
+                                        ng-class="{'active': categoryActive == key}">
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-5 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4 id="first-category-title">{{category.title_category}}
+                                                            </h4>
+                                                            <p id="first-category-desc">
+                                                                {{category.description_category}}</p>
+                                                            <div class="main-white-button bot-shop" id="first-btn-bot">
+                                                                <a><i class="fa fa-eye" aria-hidden="true"></i>
+                                                                    Discover More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 align-self-center">
+                                                        <div class="right-image" id="first-category-img"><img
+                                                                src="frontend/view/icons{{category.img_category}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-page fueltype">
+    <h2>FuelType</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <div class="row py-10" id="row-fueltypes-home">
+                        <div ng-repeat="type_fuel in type_fuels" id="col-row-fuel-0"
+                            class="col-md-4 mt-10 align-self-center ccc bot-shop">
+                            <a id="col-a-fuel-0">
+                                <div id="col-div-fuel-0" class="cont">
+                                    <div id="col-img-fuel-0" class="img"><img
+                                            src="frontend/view/icons{{type_fuel.img_type_fuel}}">
+                                    </div>
+                                    <div id="col-title-fuel-0" class="title">
+                                        <p id="col-p-fuel-0">{{type_fuel.name_type_fuel}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="attributes-sec">
+    <h2>Otras busquedas</h2>
+    <div class="container">
+        <div class="atts" id="atts">
+            <div id="att-0" ng-repeat="attribute in attributes" class="attribute bot-shop">{{attribute.name_attribute}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="news-sec">
+    <h2>News</h2>
+    <div class="container" id="container-news">
+        <div ng-repeat="(key, newsSec) in newsListar" id="gc-{{key}}" class="grid-container g0{{newsSec.typeSec}}" ng-show="{true: key > newsAct}">
+            <div id="gc-item-1" class="item grid-cell-1">
+                <div id="gc-item-img-1" class="img"><img
+                        src="https://i.blogs.es/acfec2/polestar-2-2020-1600-01/840_560.jpg"></div>
+                <div id="gc-item-cont-1" class="cont">
+                    <div id="gc-item-cont-title-1" class="title">El Polestar 2 llega a España: un coche eléctrico que
+                        presume de tecnología y apunta al Tesla Model 3</div>
+                    <div id="gc-item-cont-desc-1" class="desc">Polestar aterriza definitivamente en España. Lo hace con
+                        el Polestar 2, una berlina eléctrica de altas prestaciones que será le primer modelo de la firma
+                        en nuestro país. La firma, propiedad de Geely y hermana de Volvo, ofrecerá en nuestro país un
+                        modelo que …</div>
+                    <div id="gc-item-cont-author-1" class="author">Alberto de la Torre</div>
+                </div>
+            </div>
+            <div id="gc-item-2" class="item grid-cell-2">
+                <div id="gc-item-img-2" class="img"><img
+                        src="https://i.blogs.es/42780d/diseno-sin-titulo-2-/840_560.jpeg"></div>
+                <div id="gc-item-cont-2" class="cont">
+                    <div id="gc-item-cont-title-2" class="title">Los estrenos de Netflix en mayo 2022: 69 series,
+                        películas y documentales originales</div>
+                    <div id="gc-item-cont-desc-2" class="desc">La semana pasada fue intensa para Netflix, y la
+                        plataforma tiene ahora la oportunidad de resarcirse con uno de los estrenos más esperados del
+                        año: el arranque de la cuarta temporada de 'Stranger Things'. El esperado regreso de su serie
+                        estrella viene acompaña…</div>
+                    <div id="gc-item-cont-author-2" class="author">John Tones</div>
+                </div>
+            </div>
+            <div id="gc-item-3" class="item grid-cell-3">
+                <div id="gc-item-img-3" class="img"><img src="https://i.blogs.es/835a20/mercedes/840_560.jpg"></div>
+                <div id="gc-item-cont-3" class="cont">
+                    <div id="gc-item-cont-title-3" class="title">Este es el coche más caro jamás vendido: ronda los 70
+                        años y cuesta 135 millones de euros</div>
+                    <div id="gc-item-cont-desc-3" class="desc">Hay coches caros, hay coches carísimos, hay coches de
+                        súper lujo y luego está el Mercedes-Benz 300 SLR Uhlenhaut Coupé de 1955, el que puede
+                        considerarse ya como el vehículo más valioso —al menos en dinero contante y sonante— de la
+                        historia. Hace unas semanas…</div>
+                    <div id="gc-item-cont-author-3" class="author">Carlos Prego</div>
+                </div>
+            </div>
+            <div id="gc-item-4" class="item grid-cell-4">
+                <div id="gc-item-img-4" class="img"><img src="https://i.blogs.es/e063ac/hero/840_560.jpeg"></div>
+                <div id="gc-item-cont-4" class="cont">
+                    <div id="gc-item-cont-title-4" class="title">Apple está implantando ya el trabajo híbrido. La vuelta
+                        a la oficina se ha cobrado su primer pez gordo</div>
+                    <div id="gc-item-cont-desc-4" class="desc">La vuelta a la oficina y el establecimiento de un modelo
+                        de trabajo híbrido se ha cobrado su primera gran pieza. Un director de aprendizaje automático de
+                        Apple ha abandonado la empresa debido al establecimiento de esta política. Y con él, la compañía
+                        de Cuper…</div>
+                    <div id="gc-item-cont-author-4" class="author">Eduardo Archanco</div>
+                </div>
+            </div>
+            <div id="gc-item-5" class="item grid-cell-5">
+                <div id="gc-item-img-5" class="img"><img src="https://i.blogs.es/8ad22d/1366_2000-2/840_560.jpeg"></div>
+                <div id="gc-item-cont-5" class="cont">
+                    <div id="gc-item-cont-title-5" class="title">Nos vamos de compras con Elon Musk</div>
+                    <div id="gc-item-cont-desc-5" class="desc">Es con seguridad la noticia tecnológica del mes y
+                        probablemente del año. Elon Musk ya es dueño de Twitter y eso ha provocado un terremoto en la
+                        red social. Puede que no sea en términos de usuarios la más importante, pero sí una de las más
+                        influyentes a nivel …</div>
+                    <div id="gc-item-cont-author-5" class="author">Eduardo Archanco</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

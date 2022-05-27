@@ -6,30 +6,28 @@ app.config(['$routeProvider', ($routeProvider) => {
             templateUrl: "frontend/module/home/view/home.html",
             controller: "homeController",
             resolve: {
-                carousel: (services) => {
-                    return services.get('home', 'carousel');
+                marks: (services) => {
+                    return services.get('home', 'list_marks');
                 },
-                category: (services) => {
-                    return services.get('home', 'category');
+                categories: (services) => {
+                    return services.post('home', 'list_categories', { limit: 3 });
                 },
-                type: (services) => {
-                    return services.get('home', 'types');
+                type_fuels: (services) => {
+                    return services.post('home', 'list_type_fuels', { limit: 4 });
+                },
+                attributes: (services) => {
+                    return services.get('home', 'list_attributes');
+                },
+                news: (servicesST) => {
+                    return servicesST.get('https://newsapi.org/v2/everything?' +
+                    'q=car&' +
+                    'language=es&' +
+                    // 'from=2022-04-11&' +
+                    'sortBy=popularity&' +
+                    'apiKey=f2d9196570914e7da8f09b7648782c9b');
                 }
             }
         })
-        // .when('/shop', {
-        //     templateUrl: "frontend/module/shop/view/Shop.html",
-        //     css: ['frontend/view/css/filtersDiv.css', 'frontend/view/css/listAll.css', 'frontend/view/css/shopList.css'],
-        //     controller: "shopController",
-        //     resolve: {
-        //         list: (services) => {
-        //             return services.get('shop', 'allCars');
-        //         },
-        //         filters: (services) => {
-        //             return services.get('shop', 'cars');
-        //         }
-        //     }
-        // })
         .when("/contact", {
             templateUrl: "frontend/module/contact/view/contact.html",
             controller: "contactController",
@@ -40,8 +38,12 @@ app.config(['$routeProvider', ($routeProvider) => {
 }])
 
 app.run(($rootScope, services, $location) => {
-    var loc = $location.path().split('/')
-    $rootScope.menuActive = loc[1]
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+        // handle route changes  
+        var loc = $location.path().split('/')
+        $rootScope.menuActive = loc[1]
+    });
+
 
     window.onscroll = function () { myFunction() };
 
