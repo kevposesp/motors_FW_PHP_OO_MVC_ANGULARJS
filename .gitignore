@@ -1,4 +1,4 @@
 *.ini
 *config.php
 *template
-config.json
+*config.js
