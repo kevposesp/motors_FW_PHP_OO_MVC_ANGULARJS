@@ -1,5 +1,6 @@
 app.factory('servicesST', ['$http', '$q', ($http, $q) => {
-    let servicesBase = '/motors_FW_PHP_OO_MVC_ANGULARJS/backend/index.php?page=';
+
+    let servicesBase = conf.url_back + 'index.php?page=';
     let obj = {};
 
     delete $http.defaults.headers.common.token
