@@ -36,6 +36,9 @@
     //IMG
     // define('IMG_PATH', SITE_ROOT . 'view/img/');
     define('IMG_PATH', SITE_PATH . 'view/images/');
+
+    // Config Files
+    define('CONF_PATH', SITE_ROOT . 'config/');
     
     //MODEL_HOME
     define('UTILS_HOME', SITE_ROOT . 'module/home/utils/');

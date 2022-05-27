@@ -4,7 +4,7 @@ class mail
 {
     public static function send_email($data)
     {
-        require_once(UTILS . 'PHPMailer/config.php');
+        require_once(CONF_PATH . 'config.php');
         $mail->ClearAllRecipients();
         $mail->AddAddress($data['email']);
         switch ($data['type']) {
