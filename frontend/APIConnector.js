@@ -1,6 +1,5 @@
 app.factory('services', ['$http', '$q', ($http, $q) => {
     let servicesBase = conf.url_back + 'index.php?page=';
-    // let servicesBase = '/motors_FW_PHP_OO_MVC_ANGULARJS/backend/index.php?page=';
     let obj = {};
 
     $http.defaults.headers.common.token = localStorage.getItem('token') || false;
