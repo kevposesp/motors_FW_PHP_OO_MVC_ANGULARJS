@@ -5044,6 +5044,9 @@ header .lang {
   margin: 20px auto 0px;
   display: block;
 }
+.news-sec button {
+  margin: 20px;
+}
 
 .listing-page .menuk {
   margin-bottom: 15px;

@@ -127,68 +127,17 @@
 <div class="news-sec">
     <h2>News</h2>
     <div class="container" id="container-news">
-        <div ng-repeat="(key, newsSec) in newsListar" id="gc-{{key}}" class="grid-container g0{{newsSec.typeSec}}" ng-show="{true: key > newsAct}">
-            <div id="gc-item-1" class="item grid-cell-1">
-                <div id="gc-item-img-1" class="img"><img
-                        src="https://i.blogs.es/acfec2/polestar-2-2020-1600-01/840_560.jpg"></div>
+        <div ng-repeat="(key, newsSec) in newsListar" id="gc-{{key}}" class="grid-container g0{{newsSec.typeSec}}"
+            ng-show="{{newsAct >= key}}">
+            <div ng-repeat="(key, new) in newsSec.news" id="gc-item-{{key+1}}" class="item grid-cell-{{key+1}}">
+                <div id="gc-item-img-1" class="img"><img src="{{new.urlToImage}}"></div>
                 <div id="gc-item-cont-1" class="cont">
-                    <div id="gc-item-cont-title-1" class="title">El Polestar 2 llega a España: un coche eléctrico que
-                        presume de tecnología y apunta al Tesla Model 3</div>
-                    <div id="gc-item-cont-desc-1" class="desc">Polestar aterriza definitivamente en España. Lo hace con
-                        el Polestar 2, una berlina eléctrica de altas prestaciones que será le primer modelo de la firma
-                        en nuestro país. La firma, propiedad de Geely y hermana de Volvo, ofrecerá en nuestro país un
-                        modelo que …</div>
-                    <div id="gc-item-cont-author-1" class="author">Alberto de la Torre</div>
-                </div>
-            </div>
-            <div id="gc-item-2" class="item grid-cell-2">
-                <div id="gc-item-img-2" class="img"><img
-                        src="https://i.blogs.es/42780d/diseno-sin-titulo-2-/840_560.jpeg"></div>
-                <div id="gc-item-cont-2" class="cont">
-                    <div id="gc-item-cont-title-2" class="title">Los estrenos de Netflix en mayo 2022: 69 series,
-                        películas y documentales originales</div>
-                    <div id="gc-item-cont-desc-2" class="desc">La semana pasada fue intensa para Netflix, y la
-                        plataforma tiene ahora la oportunidad de resarcirse con uno de los estrenos más esperados del
-                        año: el arranque de la cuarta temporada de 'Stranger Things'. El esperado regreso de su serie
-                        estrella viene acompaña…</div>
-                    <div id="gc-item-cont-author-2" class="author">John Tones</div>
-                </div>
-            </div>
-            <div id="gc-item-3" class="item grid-cell-3">
-                <div id="gc-item-img-3" class="img"><img src="https://i.blogs.es/835a20/mercedes/840_560.jpg"></div>
-                <div id="gc-item-cont-3" class="cont">
-                    <div id="gc-item-cont-title-3" class="title">Este es el coche más caro jamás vendido: ronda los 70
-                        años y cuesta 135 millones de euros</div>
-                    <div id="gc-item-cont-desc-3" class="desc">Hay coches caros, hay coches carísimos, hay coches de
-                        súper lujo y luego está el Mercedes-Benz 300 SLR Uhlenhaut Coupé de 1955, el que puede
-                        considerarse ya como el vehículo más valioso —al menos en dinero contante y sonante— de la
-                        historia. Hace unas semanas…</div>
-                    <div id="gc-item-cont-author-3" class="author">Carlos Prego</div>
-                </div>
-            </div>
-            <div id="gc-item-4" class="item grid-cell-4">
-                <div id="gc-item-img-4" class="img"><img src="https://i.blogs.es/e063ac/hero/840_560.jpeg"></div>
-                <div id="gc-item-cont-4" class="cont">
-                    <div id="gc-item-cont-title-4" class="title">Apple está implantando ya el trabajo híbrido. La vuelta
-                        a la oficina se ha cobrado su primer pez gordo</div>
-                    <div id="gc-item-cont-desc-4" class="desc">La vuelta a la oficina y el establecimiento de un modelo
-                        de trabajo híbrido se ha cobrado su primera gran pieza. Un director de aprendizaje automático de
-                        Apple ha abandonado la empresa debido al establecimiento de esta política. Y con él, la compañía
-                        de Cuper…</div>
-                    <div id="gc-item-cont-author-4" class="author">Eduardo Archanco</div>
-                </div>
-            </div>
-            <div id="gc-item-5" class="item grid-cell-5">
-                <div id="gc-item-img-5" class="img"><img src="https://i.blogs.es/8ad22d/1366_2000-2/840_560.jpeg"></div>
-                <div id="gc-item-cont-5" class="cont">
-                    <div id="gc-item-cont-title-5" class="title">Nos vamos de compras con Elon Musk</div>
-                    <div id="gc-item-cont-desc-5" class="desc">Es con seguridad la noticia tecnológica del mes y
-                        probablemente del año. Elon Musk ya es dueño de Twitter y eso ha provocado un terremoto en la
-                        red social. Puede que no sea en términos de usuarios la más importante, pero sí una de las más
-                        influyentes a nivel …</div>
-                    <div id="gc-item-cont-author-5" class="author">Eduardo Archanco</div>
+                    <div id="gc-item-cont-title-1" class="title">{{new.title}}</div>
+                    <div id="gc-item-cont-desc-1" class="desc">{{new.description}}</div>
+                    <div id="gc-item-cont-author-1" class="author">{{new.author}}</div>
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-secondary" ng-click="moreNews()"><i class="fa fa-paper-plane"></i> More news</button>
     </div>
 </div>

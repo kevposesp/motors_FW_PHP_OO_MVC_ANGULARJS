@@ -2,6 +2,13 @@ app.controller('homeController', ($scope, marks, categories, type_fuels, attribu
   $scope.markClick = function () {
     console.log(this.mark.id_mark);
   }
+
+  $scope.newsAct = 0
+  $scope.moreNews = function () {
+    $scope.newsAct++
+    console.log($scope.newsAct);
+  }
+
   $scope.marks = marks
   $scope.categories = categories
 
@@ -32,7 +39,6 @@ app.controller('homeController', ($scope, marks, categories, type_fuels, attribu
     },
   })
 
-  $scope.newsAct = 0
   function changeNews() {
     swiper
     var newsListar = []
@@ -60,6 +66,7 @@ app.controller('homeController', ($scope, marks, categories, type_fuels, attribu
       
     }
     $scope.newsListar = newsListar
+    console.log(newsListar);
   }
 
   setTimeout(
