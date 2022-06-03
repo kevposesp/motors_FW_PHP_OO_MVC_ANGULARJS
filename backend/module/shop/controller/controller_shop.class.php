@@ -6,6 +6,7 @@
         }
 
         function list_cars_with_names() {
+            // echo json_encode($_POST);
             if(isset($_POST['filters']) && $_POST['filters'] != null) {
                 $filters = $_POST['filters'];
             } else {

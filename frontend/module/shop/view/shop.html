@@ -1,0 +1,118 @@
+<div class="page-heading">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="top-text header-text">
+          <h6>Check Out Our Listings</h6>
+          <h2>Item listings of Different Categories</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="listing-page">
+  <div class="container" id="container-shop">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="naccs">
+          <div class="grid">
+            <div class="row">
+              <div class="col-lg-2">
+                <div class="menuk">
+                  <div class="title">Filters</div>
+                  <div class="filters" id="filters_shop">
+
+                    <div id="mod-0" class="col-lg-12 p-relative column" ng-repeat="(key, filter) in filters">
+                      <p>{{key}}</p>
+                      <ul id="ul-0">
+                        <li id="li-0typeFuels" ng-repeat="op in filter">
+                          <input type="checkbox" class="inFilters" ng-checked="{{op.select}}"
+                            ng-click="changeFiltersClick()">
+                          <span>{{op.name}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <ul class="nacc">
+                  <li class="active">
+                    <div>
+                      <div class="col-lg-12">
+                        <div class="">
+                          <div class="item">
+                            <div class="row row_shop_car" id="row_shop_car">
+
+                              <div class="col-lg-12 cardk" ng-repeat="(key, car) in cars">
+                                <div class="listing-item">
+                                  <div class="left-image">
+                                    <a>
+                                      <img src="frontend/view/images/{{car.imgs[0]}}" class="img-prin">
+                                    </a>
+                                    <div class="hover-content">
+                                      <div class="main-white-button clk-btn">
+                                        <a >
+                                          <i class="fa fa-eye" aria-hidden="true">
+                                          </i> 
+                                          Contact Now
+                                        </a>
+                                      </div>
+                                    </div>
+                                    <div class="hover-content like-cont">
+                                      <div class="main-white-button clk-btn">
+                                        <i class="fa-regular fa-heart">
+                                        </i>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="right-content align-self-center">
+                                    <a>
+                                      <h4>{{car.data.name_mark}} {{car.data.name_model}}</h4>
+                                    </a>
+                                    <h6>
+                                      by: Real ESTATE Agent
+                                    </h6>
+                                    <span class="price">
+                                      <div class="icon">
+                                        <img src="frontend/view/images/listing-icon-01.png">
+                                      </div>
+                                      {{car.data.price_car}} €
+                                    </span>
+                                    <span class="details">
+                                      Km: <em> {{car.data.km_car}} </em>
+                                    </span>
+                                    <span class="info">
+                                      {{car.data.doors_car}} Doors<br>{{car.data.name_category}}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                            <div id="pagination" class="pagination">
+                              <div class="cont">
+                                <div id="an" class="an" ng-click="changePagination('an')">&#60;</div>
+                                <!-- <div class="it">...</div> -->
+                                <div class="it" ng-repeat="(key, num) in getNumber(total_pages) track by key" ng-class="{act: actpage-1 == key}" ng-click="changePagination()">{{key+1}}</div>
+                                <!-- <div class="it">...</div> -->
+                                <div id="po" class="po" ng-click="changePagination('po')">&#62;</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-3 map-cont">
+                <div id="map" class="mapshopcont"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

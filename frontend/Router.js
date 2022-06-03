@@ -28,6 +28,24 @@ app.config(['$routeProvider', ($routeProvider) => {
                 }
             }
         })
+        .when("/shop", {
+            templateUrl: "frontend/module/shop/view/shop.html",
+            controller: "shopController",
+            resolve: {
+                filters: (services) => {
+                    return services.get('shop', 'getFilters');
+                },
+                cars: (services, servicesLS) => {
+                    return services.post('shop', 'list_cars_with_names', { filters: servicesLS.getLS('filters'), items_page: 4, total_prod: 0});
+                }
+            //     type_fuels: (services) => {
+            //         return services.post('home', 'list_type_fuels', { limit: 4 });
+            //     },
+            //     attributes: (services) => {
+            //         return services.get('home', 'list_attributes');
+            //     }
+            }
+        })
         .when("/contact", {
             templateUrl: "frontend/module/contact/view/contact.html",
             controller: "contactController",
@@ -38,6 +56,7 @@ app.config(['$routeProvider', ($routeProvider) => {
 }])
 
 app.run(($rootScope, services, $location) => {
+    // toastr.success('hola mundo')
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
         // handle route changes  
         var loc = $location.path().split('/')
