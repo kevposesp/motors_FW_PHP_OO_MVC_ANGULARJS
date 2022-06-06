@@ -1,4 +1,4 @@
-app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, filters, cars) => {
+app.controller('shopController', ($scope, $rootScope, shopService, servicesLS, filters, cars) => {
     var items_page = 4, total_prod = cars.count, actpage = 1
 
     $scope.changePagination = function (id = 'pag') {
@@ -51,7 +51,7 @@ app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, 
     var markers = []
     async function loadCars() {
         var newCars;
-        await shopServices.getCars(items_page, (actpage - 1) * items_page, servicesLS.getLS('filters')).then((data) => {
+        await shopService.getCars(items_page, (actpage - 1) * items_page, servicesLS.getLS('filters')).then((data) => {
             newCars = data
             console.log(newCars);
             $scope.cars = newCars.data

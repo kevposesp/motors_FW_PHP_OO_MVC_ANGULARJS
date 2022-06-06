@@ -1,4 +1,4 @@
-app.factory('shopServices', ['services', '$rootScope', (services, $rootScope) => {
+app.factory('shopService', ['services', '$rootScope', (services, $rootScope) => {
     let service = { getCars };
     return service;
 

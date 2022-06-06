@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
 
+    <!-- Bootstrap core CSS -->
+    <link href="frontend/view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- ToastrJS -->
     <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
     <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
@@ -28,12 +31,19 @@
 
     <!-- Home Controller -->
     <script src="frontend/module/home/controller/HomeController.js"></script>
-    <script src="frontend/module/home/services/HomeServices.js"></script>
+    <script src="frontend/module/home/services/HomeService.js"></script>
 
     <!-- Shop Controller -->
     <script src="frontend/module/shop/controller/ShopController.js"></script>
     <script src="frontend/module/shop/controller/DetailsController.js"></script>
-    <script src="frontend/module/shop/services/ShopServices.js"></script>
+    <script src="frontend/module/shop/services/ShopService.js"></script>
+
+    <!-- Search -->
+    <script src="frontend/module/search/services/SearchService.js"></script>
+
+    <!-- Auth Controller -->
+    <script src="frontend/module/auth/controller/AuthController.js"></script>
+    <script src="frontend/module/auth/services/AuthService.js"></script>
 
     <!-- Dynamic CSS -->
     <!-- <script src="frontend/view/js/route-style.js"></script> -->
@@ -45,9 +55,6 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link href="frontend/view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="frontend/view/css/fontawesome.css">
     <link rel="stylesheet" href="frontend/view/css/templatemo-plot-listing.css">
@@ -58,9 +65,9 @@
     <script src="https://kit.fontawesome.com/988f061567.js" crossorigin="anonymous"></script>
 
     <!-- Alertify -->
-    <script src="frontend/view/vendor/alertify/alertify.min.js"></script>
+    <!-- <script src="frontend/view/vendor/alertify/alertify.min.js"></script>
     <link rel="stylesheet" href="frontend/view/vendor/alertify/css/alertify.min.css" />
-    <link rel="stylesheet" href="frontend/view/vendor/alertify/css/themes/default.min.css" />
+    <link rel="stylesheet" href="frontend/view/vendor/alertify/css/themes/default.min.css" /> -->
 
     <!-- Swiper JS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />

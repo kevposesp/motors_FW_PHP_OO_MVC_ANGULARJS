@@ -4,7 +4,7 @@ class mail
 {
     public static function send_email($data)
     {
-        require_once(CONF_PATH . 'config.php');
+        require_once('PHPMailer/config.php');
         $mail->ClearAllRecipients();
         $mail->AddAddress($data['email']);
         switch ($data['type']) {
@@ -19,13 +19,13 @@ class mail
             case 'validate';
                 $mail->Subject = "Mensaje para validar correo";
                 $msg = "<h1>Bienvenido a motors</h1><br>";
-                $msg .= "<a href='" . SITE_PATH . "auth/view/verify/" . $data['token_email'] . "'>Verificar correo</a>";
+                $msg .= "<a href='http://localhost/motors_FW_PHP_OO_MVC_ANGULARJS/#/auth/verify/" . $data['token_email'] . "'>Verificar correo</a>";
                 $mail->Body = $msg;
                 break;
             case 'recover';
                 $mail->Subject = "Mensaje para recuperar la contraseña";
                 // $msg = "<h1>Bienvenido a motors</h1><br>";
-                $msg = "<a href='" . SITE_PATH . "auth/view/recover/" . $data['token'] . "'>Recuperar ahora</a>";
+                $msg = "<a href='http://localhost/motors_FW_PHP_OO_MVC_ANGULARJS/#/auth/recover/" . $data['token'] . "'>Recuperar ahora</a>";
                 $mail->Body = $msg;
                 break;
         }

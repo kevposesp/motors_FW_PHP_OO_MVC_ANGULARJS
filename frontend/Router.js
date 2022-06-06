@@ -1,4 +1,4 @@
-var app = angular.module('motors_FW_PHP_OO_MVC_ANGULARJS', ['ngRoute']);
+var app = angular.module('motors_FW_PHP_OO_MVC_ANGULARJS', ['ngRoute', 'toastr']);
 
 app.config(['$routeProvider', ($routeProvider) => {
     $routeProvider
@@ -56,12 +56,20 @@ app.config(['$routeProvider', ($routeProvider) => {
             templateUrl: "frontend/module/contact/view/contact.html",
             controller: "contactController",
         })
+        .when("/auth", {
+            templateUrl: "frontend/module/auth/view/auth.html",
+            controller: "authController"
+        })
+        .when("/auth/:type/:id", {
+            templateUrl: "frontend/module/auth/view/auth.html",
+            controller: "authController"
+        })
         .otherwise({
             redirectTo: "/home"
         })
 }])
 
-app.run(($rootScope, services, $location) => {
+app.run(($rootScope, services, $location, searchServices) => {
     // toastr.success('hola mundo')
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
         // handle route changes  
@@ -83,4 +91,6 @@ app.run(($rootScope, services, $location) => {
             document.getElementById("myP").classList.remove("background-header");
         }
     }
+
+    console.log($rootScope.attSelected);
 })
