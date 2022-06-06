@@ -59,6 +59,7 @@ app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, 
             $scope.total_pages = load_pagination()
             loadMarkers()
         })
+        loadMap()
     }
 
     var newFilters = {}
@@ -102,6 +103,10 @@ app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, 
 
     $scope.cars = cars.data
 
+    $scope.loadDetails = function() {
+        // console.log(this.car);
+        location.href = "#/shop/car/" + this.car['data'].id_car;
+    }
     // Map
     var map;
     function loadMap() {
@@ -112,11 +117,14 @@ app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, 
             center: [-0.6063114551242474, 38.82434863048071], // starting position [lng, lat]
             zoom: 9 // starting zoom
         });
+        markers = []
+        currentMarkers = []
+        loadMarkers()
     }
     function loadMarkers() {
         if (total_prod > 0) {
             $scope.cars.forEach((car) => {
-                console.log(car);
+                // console.log(car);
                 markers.push({
                     id: car.data.id_car,
                     img: 'frontend/view/images' + car.imgs[0],
@@ -128,18 +136,19 @@ app.controller('shopController', ($scope, $rootScope, shopServices, servicesLS, 
             setMarks(markers)
         }
     }
-    function emptyMap() {
-        if (currentMarkers !== null) {
-            for (var i = currentMarkers.length - 1; i >= 0; i--) {
-                currentMarkers[i].remove();
-            }
-        }
-    }
+    // function emptyMap() {
+    //     if (currentMarkers !== null) {
+    //         for (var i = currentMarkers.length - 1; i >= 0; i--) {
+    //             currentMarkers[i].remove();
+    //         }
+    //     }
+    // }
     function setMarks(params) {
-        emptyMap()
+        // emptyMap()
+        // console.log(currentMarkers);
         params.forEach(element => {
             var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-                `<img src="` + element.img + `"/><h3>` + element.text + `</h3><p>` + element.price + ` €</p>`
+                `<img src="` + element.img + `"/><a href='#/shop/details/` + element.id + `'><h3>` + element.text + `</h3></a><p>` + element.price + ` €</p>`
             );
             var mark = new mapboxgl.Marker()
                 .setLngLat(element.coord)

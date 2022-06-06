@@ -6,7 +6,6 @@
         }
 
         function list_cars_with_names() {
-            // echo json_encode($_POST);
             if(isset($_POST['filters']) && $_POST['filters'] != null) {
                 $filters = $_POST['filters'];
             } else {
@@ -14,7 +13,6 @@
             }
             $token = MiddlewareAuth::middlewareAuth();
             echo json_encode(common::load_model('shop_model', 'get_cars_with_names', [$filters, $_POST['items_page'], $_POST['total_prod'], $token]));
-            // echo json_encode($token);
         }
         
         function read_car() {
@@ -26,7 +24,7 @@
         }
         
         function read_releated_by_mark() {
-            echo json_encode(common::load_model('shop_model', 'get_releated_by_mark', [$_POST['id_mark'], $_POST['id_car']]));
+            echo json_encode(common::load_model('shop_model', 'get_releated_by_mark', $_POST['id_car']));
         }
         
         function setUnsetLike() {

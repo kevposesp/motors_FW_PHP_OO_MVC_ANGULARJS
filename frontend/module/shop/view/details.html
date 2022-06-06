@@ -1,0 +1,155 @@
+<div class="page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="top-text header-text">
+                    <h6>Check Out Our Listings</h6>
+                    <h2>Item listings of Different Categories</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="listing-page">
+    <div class="container" id="container-shop">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="naccs">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <ul class="nacc">
+                                    <li class="active">
+                                        <div>
+                                            <div class="col-lg-12">
+                                                <div class="">
+                                                    <div class="item">
+                                                        <div class="row row_shop_car" id="row_shop_car">
+
+                                                            <div id="arrow-cont" class="arrow-cont"
+                                                                ng-click="returnShop()"><i class="fa fa-arrow-left"
+                                                                    aria-hidden="true"></i>
+                                                            </div>
+                                                            <div id="details-container" class="container details">
+                                                                <div id="details-card" class="card">
+                                                                    <div id="details-card-body" class="card">
+                                                                        <div id="details-row" class="row">
+                                                                            <div id="details-row-cont-img"
+                                                                                class="col-lg-5 col-md-5 col-sm-6">
+                                                                                <div id="cont-img-prin"
+                                                                                    class="white-box text-center"><img
+                                                                                        id="img-prin-details"
+                                                                                        src="{{imgAct}}"
+                                                                                        class="img-responsive"></div>
+                                                                                <div id="cont-img-car-cont"
+                                                                                    class="carrousel-de">
+                                                                                    <div class="swiper swiper-details">
+                                                                                        <div class="swiper-wrapper">
+                                                                                            <div class="swiper-slide"
+                                                                                                ng-repeat="image in images">
+                                                                                                <div class="cont-img">
+                                                                                                    <img src="frontend/view/images{{image}}"
+                                                                                                        ng-click="changeImg()">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="details-row-cont-ov"
+                                                                                class="col-lg-7 col-md-7 col-sm-6 mt-3">
+                                                                                <h6 id="details-ov-h6-subtitle"
+                                                                                    class="card-subtitle">Car</h6>
+                                                                                <h4 id="details-ov-h4-boxtitle"
+                                                                                    class="box-title">{{car.name_mark}}
+                                                                                    {{car.name_model}}</h4>
+                                                                                <div id="details-ov-fllw" class="fllw">
+                                                                                    <div id="details-ov-fllw-like"
+                                                                                        class="like"><i
+                                                                                            class="fa fa-heart"
+                                                                                            aria-hidden="true"></i>
+                                                                                    </div>
+                                                                                    <div id="details-ov-fllw-revs"
+                                                                                        class="revs">
+                                                                                        <h5>{{car.count}} Views</h5>
+                                                                                    </div>
+                                                                                    <div id="details-ov-fllw-rrss"
+                                                                                        class="rrss"><i
+                                                                                            class="fa fa-facebook"
+                                                                                            aria-hidden="true"></i><i
+                                                                                            class="fa fa-twitter"
+                                                                                            aria-hidden="true"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <p id="details-ov-overv" class="overv">
+                                                                                    {{car.overview_car}}</p>
+                                                                                <div id="details-ov-shopd"
+                                                                                    class="cont-just mt-3">
+                                                                                    <h2>{{car.price_car}} €</h2><button
+                                                                                        id="details-ov-shopd-btn"
+                                                                                        class="btn btn-dark btn-rounded mr-1"><i
+                                                                                            class="fa fa-shopping-cart"
+                                                                                            aria-hidden="true"></i></button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="details-row-cont-info"
+                                                                                class="col-lg-12 col-md-12 col-sm-12">
+                                                                                <h3 id="details-info-box-title"
+                                                                                    class="box-title mt-5 mb-2">General
+                                                                                    Info</h3>
+                                                                                <div id="details-info-table"
+                                                                                    class="table-responsive">
+                                                                                    <table id="details-table"
+                                                                                        class="table table-striped table-product">
+                                                                                        <tbody id="details-table-tbody">
+                                                                                            <tr
+                                                                                                ng-repeat="(key, dat) in car">
+                                                                                                <td width="390">
+                                                                                                    {{key}}</td>
+                                                                                                <td>{{dat}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 map-cont">
+                                <div id="map-det" class="mapshopcont"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="row-releated" class="row row-releated row-releated-brand" ng-show="moreReleated.length > 0">
+            <h2 id="title_releated_by_mark" class="title">Relacionados por marca</h2>
+            <div id="div-releated" class="col-lg-12">
+                <div id="naccs-releated" class="naccs">
+                    <div id="grid-releated" class="grid">
+                        <div id="row-releated" class="row"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="car-cont-releated-0" class="car-card-cont col-lg-3" ng-repeat="(key, car) in moreReleated" ng-click="loadDetails()">
+                <div id="card-releated-0" class="card"><img src="frontend/view/images/{{car.url_img}}">
+                    <div id="cont-releated-0" class="cont">
+                        <div id="cont-ttl-releated-0" class="ttl">{{car.name_mark}} {{car.name_model}}</div>
+                        <div id="cont-price-releated-0" class="price">{{car.price_car}}</div>
+                        <div id="cont-km-releated-0" class="km">{{car.km_car}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

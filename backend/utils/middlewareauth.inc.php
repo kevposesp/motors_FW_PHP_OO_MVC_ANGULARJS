@@ -3,6 +3,7 @@
 class MiddlewareAuth {
     public static function middlewareAuth() {
         $headers = apache_request_headers();
+        // return $headers;
         // echo json_encode($headers['token']);
 
         // return $headers;

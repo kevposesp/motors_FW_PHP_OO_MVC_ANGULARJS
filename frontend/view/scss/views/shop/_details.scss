@@ -98,6 +98,16 @@
         }
         .carrousel-de {
             margin-top: 15px;
+            .swiper-details {
+                .cont-img {
+                    padding: 10px;
+                    transition: 1s;
+                    &:hover {
+                        cursor: pointer;
+                        transform: scale(1.15);
+                    }
+                }
+            }
             .owl-carousel {
                 .owl-item {
                     border-radius: 4px;

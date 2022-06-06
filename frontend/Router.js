@@ -18,8 +18,8 @@ app.config(['$routeProvider', ($routeProvider) => {
                 attributes: (services) => {
                     return services.get('home', 'list_attributes');
                 },
-                news: (servicesST) => {
-                    return servicesST.get('https://newsapi.org/v2/everything?' +
+                news: (services) => {
+                    return services.getST('https://newsapi.org/v2/everything?' +
                     'q=car&' +
                     'language=es&' +
                     // 'from=2022-04-11&' +
@@ -38,12 +38,18 @@ app.config(['$routeProvider', ($routeProvider) => {
                 cars: (services, servicesLS) => {
                     return services.post('shop', 'list_cars_with_names', { filters: servicesLS.getLS('filters'), items_page: 4, total_prod: 0});
                 }
-            //     type_fuels: (services) => {
-            //         return services.post('home', 'list_type_fuels', { limit: 4 });
-            //     },
-            //     attributes: (services) => {
-            //         return services.get('home', 'list_attributes');
-            //     }
+            }
+        })
+        .when("/shop/car/:id", {
+            templateUrl: "frontend/module/shop/view/details.html",
+            controller: "detailsController",
+            resolve: {
+                car: (services, $route) => {
+                    return services.post('shop', 'read_car', { id: $route.current.params.id });
+                },
+                moreReleated: (services, $route) => {
+                    return services.post('shop', 'read_releated_by_mark', { id_car: $route.current.params.id });
+                }
             }
         })
         .when("/contact", {

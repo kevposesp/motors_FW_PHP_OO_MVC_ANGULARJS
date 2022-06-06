@@ -28,8 +28,9 @@
 			return $this -> dao -> select_data_filters($this->db);
 		}
 		
-		public function get_releated_by_mark_BLL($args) {
-			return $this -> dao -> select_data_releated_by_mark($this->db, $args);
+		public function get_releated_by_mark_BLL($id_car) {
+			$data_car = $this -> dao -> select_data_car($this->db, $id_car);
+			return $this -> dao -> select_data_releated_by_mark($this->db, [$data_car['data'][0]['id_mark'], $id_car]);
 		}
 		
 		public function get_setUnsetLike_BLL($args) {

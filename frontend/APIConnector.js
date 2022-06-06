@@ -2,7 +2,24 @@ app.factory('services', ['$http', '$q', ($http, $q) => {
     let servicesBase = conf.url_back + 'index.php?page=';
     let obj = {};
 
-    $http.defaults.headers.common.token = localStorage.getItem('token') || false;
+    // $http.defaults.headers.common.token = localStorage.getItem('token') || false;
+    obj.getST = (to) => {
+        let defered = $q.defer();
+        let promise = defered.promise;
+
+        $http({
+            method: 'GET',
+            url: to
+        }).success((data, status, headers, config) => {
+            console.log(data);
+            defered.resolve(data)
+        }).error((data, status, headers, config) => {
+            defered.reject(data)
+        });
+
+        return promise;
+    }
+
     obj.get = (module, funct) => {
         let defered = $q.defer();
         let promise = defered.promise;
@@ -26,7 +43,10 @@ app.factory('services', ['$http', '$q', ($http, $q) => {
         $http({
             method: 'POST',
             url: servicesBase + module + "&op=" + option,
-            data: data
+            data: data,
+            headers: {
+                token: localStorage.getItem('token') || false
+            }
         }).success((data, status, headers, config) => {
             console.log(data);
             defered.resolve(data)
