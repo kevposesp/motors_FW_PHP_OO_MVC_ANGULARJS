@@ -142,7 +142,7 @@ class auth_dao
         $token = common::generate_token_secure(20);
 
         $hashed_pass = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 12]);
-        $set_disable_user_new_token = $db->ejecutar("update users set token_verify = '$token', password_user = '$hashed_pass' where id_user = '$id'");
+        $set_disable_user_new_token = $db->ejecutar("update users set verify_email = '1', token_verify = '$token', password_user = '$hashed_pass' where id_user = '$id'");
         if ($set_disable_user_new_token) {
             $res['status'] = true;
         } else {

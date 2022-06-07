@@ -127,15 +127,16 @@ class auth_bll
 		if ($user) {
 			$nP = $this->dao->setNewPassword_user($this->db, $user->id_user, $data['pass']);
 			if ($nP['status']) {
-				$email['type'] = "validate";
-				$email['email'] = $user->email_user;
-				$email['token_email'] = $nP['token'];
-				if (!mail::send_email($email)) {
-					$res['status'] = false;
-					$res['err_msg'] = "error_send";
-				} else {
-					return true;
-				}
+				// $email['type'] = "validate";
+				// $email['email'] = $user->email_user;
+				// $email['token_email'] = $nP['token'];
+				// if (!mail::send_email($email)) {
+				// 	$res['status'] = false;
+				// 	$res['err_msg'] = "error_send";
+				// } else {
+				// 	return true;
+				// }
+				return true;
 			}
 		} else {
 			$res['status'] = false;

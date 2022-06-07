@@ -1,5 +1,5 @@
 app.factory('authService', ['services', '$rootScope', (services, $rootScope) => {
-    let service = { login, recover, setPass };
+    let service = { login, recover, setPass, register, verify };
     return service;
 
     function login(data) {
@@ -20,6 +20,22 @@ app.factory('authService', ['services', '$rootScope', (services, $rootScope) => 
 
     function setPass(data) {
         return services.post('auth', 'setNewPass', data).then((response) => {
+            return response;
+        }, (err) => {
+            console.log(err);
+        })
+    }
+    
+    function register(data) {
+        return services.post('auth', 'register', data).then((response) => {
+            return response;
+        }, (err) => {
+            console.log(err);
+        })
+    }
+
+    function verify(data) {
+        return services.post('auth', 'verify', data).then((response) => {
             return response;
         }, (err) => {
             console.log(err);

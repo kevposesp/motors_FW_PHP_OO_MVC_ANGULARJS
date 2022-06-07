@@ -49,25 +49,25 @@
                     <p class="texto">Usa tu email para registrarte</p>
                     <label class="label-input">
                         <i class="far fa-user icon-modificado" aria-hidden="true"></i>
-                        <input type="text" name="username" id="username" placeholder="Username">
+                        <input type="text" name="username" ng-model="usr" id="username" placeholder="Username">
                     </label>
                     <span id="error_username"></span>
                     <label class="label-input">
                         <i class="far fa-envelope icon-modificado" aria-hidden="true"></i>
-                        <input type="text" name="email" id="email" placeholder="E-mail">
+                        <input type="text" name="email" ng-model="email" id="email" placeholder="E-mail">
                     </label>
                     <span id="error_email"></span>
                     <label class="label-input">
                         <i class="fas fa-lock icon-modificado" aria-hidden="true"></i>
-                        <input type="password" name="password" id="password" placeholder="Password">
+                        <input type="password" name="password" ng-model="password" id="password" placeholder="Password">
                     </label>
                     <span id="error_password"></span>
 
-                    <input type="hidden" name="img" id="img_input" value="" required="">
-                    <span id="error_img"></span>
+                    <!-- <input type="hidden" name="img" ng-model="img" id="img_input" value="" required="">
+                    <span id="error_img"></span> -->
 
-                    <button type="button" id="upload_widget" class="cloudinary-button">Upload image</button>
-                    <button type="button" class="btn btnCadastro1" id="registro">Registrar</button>
+                    <button type="button" id="upload_widget" ng-click="upImg()" class="cloudinary-button">Upload image</button>
+                    <button type="button" class="btn btnCadastro1" id="registro" ng-click="register(usr, email, password, img)">Registrar</button>
                 </form>
             </div>
 
