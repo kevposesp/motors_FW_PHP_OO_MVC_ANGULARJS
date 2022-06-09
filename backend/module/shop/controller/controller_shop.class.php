@@ -29,6 +29,7 @@
         
         function setUnsetLike() {
             $token = MiddlewareAuth::middlewareAuth();
+            // echo json_encode([$token['data_id'], $_POST['id']]);
             if($token) {
                 echo json_encode(common::load_model('shop_model', 'get_setUnsetLike', [$token['data_id'], $_POST['id']]));
             } else {

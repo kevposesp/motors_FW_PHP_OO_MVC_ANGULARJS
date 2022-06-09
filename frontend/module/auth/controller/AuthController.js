@@ -1,4 +1,4 @@
-app.controller('authController', ($scope, $route, authService, servicesLS, toastr) => {
+app.controller('authController', ($scope, $route, $rootScope, authService, service_auth0, servicesLS, toastr) => {
     $scope.rpa = false
     $scope.changeMenu = function () {
         $scope.rpa = !$scope.rpa
@@ -112,6 +112,10 @@ app.controller('authController', ($scope, $route, authService, servicesLS, toast
                     }
                 }
             })
+    }
+
+    $rootScope.socialLogin = function (type) {
+        authService.social_login(type)
     }
 
 });

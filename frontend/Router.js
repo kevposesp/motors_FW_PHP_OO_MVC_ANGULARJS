@@ -69,27 +69,39 @@ app.config(['$routeProvider', ($routeProvider) => {
         })
 }])
 
-app.run(($rootScope, services, $location, searchServices, servicesLS) => {
-    function loadInf() {
-        if (servicesLS.getLS('token')) {
-            function inf() {
-                return services.post('auth', 'infBut').then((response) => {
-                    return response;
-                }, (err) => {
-                    console.log(err);
-                })
-            }
-            inf()
-                .then(function (data) {
-                    $rootScope.usr_data = true
-                    $rootScope.img_usr = data.img_user
-                    $rootScope.username = data.username
-                })
-        } else {
-            $rootScope.usr_data = false
-            $rootScope.img_usr = 'frontend/view/images/user.png'
-            $rootScope.username = 'Iniciar / Registrar'
-        }
+app.run(($rootScope, services, $location, searchServices, servicesLS, service_auth0, authService) => {
+    service_auth0.auth_logg()
+    
+    var social_path = location.href.split("/")[5].split("=")[0]
+    if (social_path == 'access_token') {
+        authService.check_info_register()
+    }
+
+    async function loadInf() {
+        
+            // async function inf() {
+                if (servicesLS.getLS('token')) {
+                    await services.post('auth', 'infBut').then((response) => {
+                        // return response;
+                        console.log(response);
+                        $rootScope.usr_data = true
+                        $rootScope.img_usr = response.img_user
+                        $rootScope.username = response.username
+                    }, (err) => {
+                        console.log(err);
+                    })
+                } else {
+                    $rootScope.usr_data = false
+                    $rootScope.img_usr = 'frontend/view/images/user.png'
+                    $rootScope.username = 'Iniciar / Registrar'
+                }
+            // }
+            // inf()
+            //     .then(function (data) {
+            //         $rootScope.usr_data = true
+            //         $rootScope.img_usr = data.img_user
+            //         $rootScope.username = data.username
+            //     })
     }
     loadInf()
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
@@ -224,6 +236,6 @@ app.run(($rootScope, services, $location, searchServices, servicesLS) => {
         } else {
             $location.path('/shop')
         }
-        
+
     }
 })
