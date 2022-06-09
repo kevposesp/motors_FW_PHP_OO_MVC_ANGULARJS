@@ -20,11 +20,11 @@ app.config(['$routeProvider', ($routeProvider) => {
                 },
                 news: (services) => {
                     return services.getST('https://newsapi.org/v2/everything?' +
-                    'q=car&' +
-                    'language=es&' +
-                    // 'from=2022-04-11&' +
-                    'sortBy=popularity&' +
-                    'apiKey=f2d9196570914e7da8f09b7648782c9b');
+                        'q=car&' +
+                        'language=es&' +
+                        // 'from=2022-04-11&' +
+                        'sortBy=popularity&' +
+                        'apiKey=f2d9196570914e7da8f09b7648782c9b');
                 }
             }
         })
@@ -36,7 +36,7 @@ app.config(['$routeProvider', ($routeProvider) => {
                     return services.get('shop', 'getFilters');
                 },
                 cars: (services, servicesLS) => {
-                    return services.post('shop', 'list_cars_with_names', { filters: servicesLS.getLS('filters'), items_page: 4, total_prod: 0});
+                    return services.post('shop', 'list_cars_with_names', { filters: servicesLS.getLS('filters'), items_page: 4, total_prod: 0 });
                 }
             }
         })
@@ -69,14 +69,45 @@ app.config(['$routeProvider', ($routeProvider) => {
         })
 }])
 
-app.run(($rootScope, services, $location, searchServices) => {
-    // toastr.success('hola mundo')
+app.run(($rootScope, services, $location, searchServices, servicesLS) => {
+    function loadInf() {
+        if (servicesLS.getLS('token')) {
+            function inf() {
+                return services.post('auth', 'infBut').then((response) => {
+                    return response;
+                }, (err) => {
+                    console.log(err);
+                })
+            }
+            inf()
+                .then(function (data) {
+                    $rootScope.usr_data = true
+                    $rootScope.img_usr = data.img_user
+                    $rootScope.username = data.username
+                })
+        } else {
+            $rootScope.usr_data = false
+            $rootScope.img_usr = 'frontend/view/images/user.png'
+            $rootScope.username = 'Iniciar / Registrar'
+        }
+    }
+    loadInf()
     $rootScope.$on("$locationChangeStart", function (event, next, current) {
         // handle route changes  
+        loadInf()
         var loc = $location.path().split('/')
         $rootScope.menuActive = loc[1]
+        $rootScope.search = loc[1] == 'home' || loca[1] == 'auth' ? false : true
     });
+    $rootScope.menu_but = false
 
+    $rootScope.controlMenuInf = function () {
+        if ($rootScope.usr_data) {
+            $rootScope.menu_but = !$rootScope.menu_but
+        } else {
+            window.location.href = '#/auth';
+        }
+    }
 
     window.onscroll = function () { myFunction() };
 
@@ -92,5 +123,107 @@ app.run(($rootScope, services, $location, searchServices) => {
         }
     }
 
-    console.log($rootScope.attSelected);
+    $rootScope.logout = function () {
+        function logout() {
+            return services.post('auth', 'logout').then((response) => {
+                return response;
+            }, (err) => {
+                console.log(err);
+            })
+        }
+        logout()
+            .then(function () {
+                servicesLS.logout();
+                window.location.reload();
+            })
+    }
+
+    $rootScope.searchParams = {
+        city: "",
+        attribute: "",
+        brand: "",
+        order: ""
+    }
+
+    var filtsSearch = {
+        attribute: {
+            id: "",
+            name: ""
+        },
+        brand: {
+            id: "",
+            name: ""
+        },
+    }
+    searchServices.searchOptionAtt()
+    searchServices.searchOptionBrand()
+    searchServices.searchOptionCity()
+
+    $rootScope.actAtt = function (att) {
+        att = JSON.parse(att)
+        $rootScope.searchParams.attribute = att.id_attribute
+        filtsSearch.attribute.id = att.id_attribute
+        filtsSearch.attribute.name = att.name_attribute
+        searchServices.searchOptionBrand()
+        searchServices.searchOptionCity()
+    }
+
+    $rootScope.actBrand = function (brand) {
+        brand = JSON.parse(brand)
+        $rootScope.searchParams.brand = brand.id_mark
+        filtsSearch.brand.id = brand.id_mark
+        filtsSearch.brand.name = brand.name_mark
+        searchServices.searchOptionAtt()
+        searchServices.searchOptionCity()
+    }
+
+    $rootScope.key_autocomplete = function () {
+        $rootScope.searchParams.city = this.autocomplete
+        searchServices.searchOptionAtt()
+        searchServices.searchOptionBrand()
+        searchServices.searchOptionCity()
+    }
+
+    $rootScope.actOrder = function (order) {
+        $rootScope.searchParams.order = order
+    }
+
+    $rootScope.autoShow = false
+    // ng-focus="autoShow = true"
+
+    function ccas() {
+        $rootScope.autoShow = !$rootScope.autoShow
+    }
+    $rootScope.changeAutoShow = function () {
+        ccas()
+    }
+
+    $rootScope.setCity = function () {
+        ccas()
+        $rootScope.searchParams.city = this.city.city_car
+        $rootScope.autocomplete = this.city.city_car
+    }
+
+    $rootScope.setFiltersSearch = function () {
+        filts = []
+        if (filtsSearch.attribute.id != "") {
+            filts.push("attributes:" + filtsSearch.attribute.id + ":" + true + ":" + filtsSearch.attribute.name)
+        }
+        if (filtsSearch.brand.id != "") {
+            filts.push("marks:" + filtsSearch.brand.id + ":" + true + ":" + filtsSearch.brand.name)
+        }
+        if ($rootScope.searchParams.city != "") {
+            filts.push("city:" + $rootScope.searchParams.city + ":" + true + ":a")
+        }
+        if ($rootScope.searchParams.order != "") {
+            filts.push("order:" + $rootScope.searchParams.order + ":" + true + ":a")
+        }
+        servicesLS.setLS('filters', filts)
+        if ($rootScope.menuActive == 'shop') {
+            window.location.reload()
+        } else {
+            $location.path('/shop')
+        }
+        
+    }
 })

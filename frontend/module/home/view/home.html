@@ -11,58 +11,47 @@
             <div class="col-lg-12 cont_search_home" id="cont_search_home">
                 <form id="search-form">
                     <div id="search-row" class="row">
-                        <div id="search-row-col-att" class="col-lg-3 align-self-center">
-                            <fieldset id="col-att-fieldset">
-                                <select id="col-att-select" class="form-select" ng-model="attSelected">
-                                    <option selected="selected">Select attribute</option>
-                                    <option id="0d4a1374ac8c" value="0d4a1374ac8c:true:Nuevos">Nuevos</option>
-                                    <option id="15bfdaa74445" value="15bfdaa74445:true:Semi nuevos">Semi nuevos</option>
-                                    <option id="dffc6662ecde" value="dffc6662ecde:true:KM0">KM0</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div id="search-row-col-brand" class="col-lg-2 align-self-center">
-                            <fieldset id="col-brand-fieldset"><select id="col-brand-select" class="form-select">
-                                    <option selected="selected" value="0">Select brand</option>
-                                    <option id="d991f4b6322d" value="d991f4b6322d">BMW</option>
-                                    <option id="758750ab8cbf" value="758750ab8cbf">Ford</option>
-                                    <option id="7050e61205df" value="7050e61205df">Audi</option>
-                                    <option id="cb8758919ec6" value="cb8758919ec6">Renault</option>
-                                    <option id="9311f4f64240" value="9311f4f64240">Seat</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div id="search-row-col-text" class="col-lg-2 align-self-center">
-                            <fieldset id="col-text-fieldset">
-                                <input id="col-input-text-search" type="text" placeholder="Enter a city" class="searchText">
-                                <div id="search-auto-complete-cont" class="auto-complete-cont">
-                                    <div id="city-0" city="Olleria" class="cityAuto">Olleria</div>
-                                    <div id="city-1" city="Ontinyent" class="cityAuto">Ontinyent</div>
-                                    <div id="city-2" city="Albaida" class="cityAuto">Albaida</div>
-                                    <div id="city-3" city="Bufali" class="cityAuto">Bufali</div>
-                                    <div id="city-4" city="Agullent" class="cityAuto">Agullent</div>
-                                    <div id="city-5" city="Palomar" class="cityAuto">Palomar</div>
-                                    <div id="city-6" city="Bélgida" class="cityAuto">Bélgida</div>
-                                    <div id="city-7" city="Aielo" class="cityAuto">Aielo</div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div id="search-row-col-order" class="col-lg-2 align-self-center">
-                            <fieldset id="col-order-fieldset"><select id="col-order-select" class="form-select">
-                                    <option selected="selected" value="km">Km</option>
-                                    <option value="price">Price</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                        <div id="search-row-col-button" class="col-lg-3">
-                            <fieldset id="col-button-fieldset">
-                                <button type="button" id="main-button" class="main-button">
-                                    <i class="fa fa-search" aria-hidden="true"></i> Search now
-                                </button>
-                            </fieldset>
-                        </div>
+                      <div id="search-row-col-att" class="col-lg-3 align-self-center">
+                        <fieldset id="col-att-fieldset">
+                          <select id="col-att-select" class="form-select" ng-model="attSelected" ng-change="actAtt(attSelected)">
+                            <option>Select attribute</option>
+                            <option ng-repeat="attribute in attributes" value="{{attribute}}">{{attribute.name_attribute}}</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div id="search-row-col-brand" class="col-lg-2 align-self-center">
+                        <fieldset id="col-brand-fieldset">
+                          <select id="col-brand-select" class="form-select" ng-model="brandSelected" ng-change="actBrand(brandSelected)">
+                            <option selected="selected" value="0">Select brand</option>
+                            <option ng-repeat="brand in brands" value="{{brand}}">{{brand.name_mark}}</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div id="search-row-col-text" class="col-lg-2 align-self-center">
+                        <fieldset id="col-text-fieldset">
+                          <input id="col-input-text-search" type="text" placeholder="Enter a city" class="searchText" ng-model="autocomplete" ng-change="key_autocomplete()" ng-click="changeAutoShow()" ng-class="{active: autoShow}">
+                          <div id="search-auto-complete-cont" class="auto-complete-cont">
+                            <div id="city-0" city="Olleria" class="cityAuto" ng-repeat="city in cities" ng-click="setCity()">{{city.city_car}}</div>
+                          </div>
+                        </fieldset>
+                      </div>
+                      <div id="search-row-col-order" class="col-lg-2 align-self-center">
+                        <fieldset id="col-order-fieldset">
+                          <select id="col-order-select" class="form-select" ng-model="orderSelected" ng-change="actOrder(orderSelected)">
+                            <option selected="selected" value="km">Km</option>
+                            <option value="price">Price</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <div id="search-row-col-button" class="col-lg-3">
+                        <fieldset id="col-button-fieldset">
+                          <button type="button" id="main-button" class="main-button" ng-click="setFiltersSearch()">
+                            <i class="fa fa-search" aria-hidden="true"></i> Search now
+                          </button>
+                        </fieldset>
+                      </div>
                     </div>
-                </form>
+                  </form>
             </div>
             <div class="col-lg-10 offset-lg-1">
                 <div class="swiper">
@@ -116,7 +105,7 @@
                                                             </h4>
                                                             <p id="first-category-desc">
                                                                 {{category.description_category}}</p>
-                                                            <div class="main-white-button bot-shop" id="first-btn-bot">
+                                                            <div class="main-white-button bot-shop" id="first-btn-bot" ng-click="categoryClick()">
                                                                 <a><i class="fa fa-eye" aria-hidden="true"></i>
                                                                     Discover More</a>
                                                             </div>
@@ -149,7 +138,7 @@
                 <div class="inner-content">
                     <div class="row py-10" id="row-fueltypes-home">
                         <div ng-repeat="type_fuel in type_fuels" id="col-row-fuel-0"
-                            class="col-md-4 mt-10 align-self-center ccc bot-shop">
+                            class="col-md-4 mt-10 align-self-center ccc bot-shop" ng-click="fuelTypeClick()">
                             <a id="col-a-fuel-0">
                                 <div id="col-div-fuel-0" class="cont">
                                     <div id="col-img-fuel-0" class="img"><img
@@ -172,7 +161,7 @@
     <h2>Otras busquedas</h2>
     <div class="container">
         <div class="atts" id="atts">
-            <div id="att-0" ng-repeat="attribute in attributes" class="attribute bot-shop">{{attribute.name_attribute}}
+            <div id="att-0" ng-repeat="attribute in attributes" class="attribute bot-shop" ng-click="attributeClick()">{{attribute.name_attribute}}
             </div>
         </div>
     </div>

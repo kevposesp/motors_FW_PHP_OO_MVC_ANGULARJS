@@ -1,12 +1,27 @@
-app.controller('homeController', ($scope, marks, categories, type_fuels, attributes, news) => {
+app.controller('homeController', ($scope, $location, servicesLS, marks, categories, type_fuels, attributes, news) => {
   $scope.markClick = function () {
-    console.log(this.mark.id_mark);
+    servicesLS.setLS('filters', 'marks:' + this.mark.id_mark + ':true:' + this.mark.name_mark)
+    $location.path('/shop')
+  }
+
+  $scope.categoryClick = function () {
+    servicesLS.setLS('filters', 'categories:' + this.category.id_category + ':true:' + this.category.name_category)
+    $location.path('/shop')
+  }
+  
+  $scope.fuelTypeClick = function () {
+    servicesLS.setLS('filters', 'typeFuels:' + this.type_fuel.id_type_fuel + ':true:' + this.type_fuel.name_type_fuel)
+    $location.path('/shop')
+  }
+  
+  $scope.attributeClick = function () {
+    servicesLS.setLS('filters', 'attributes:' + this.attribute.id_attribute + ':true:' + this.attribute.name_attribute)
+    $location.path('/shop')
   }
 
   $scope.newsAct = 0
   $scope.moreNews = function () {
     $scope.newsAct++
-    console.log($scope.newsAct);
   }
 
   $scope.marks = marks
@@ -19,10 +34,6 @@ app.controller('homeController', ($scope, marks, categories, type_fuels, attribu
   $scope.changeCategory = function () {
     $scope.categoryActive = this.key
   }
-
-
-
-
 
   const swiper = new Swiper('.swiper', {
     direction: 'horizontal',
@@ -72,6 +83,5 @@ app.controller('homeController', ($scope, marks, categories, type_fuels, attribu
   setTimeout(
     changeNews()
   , 0)
-
 
 });

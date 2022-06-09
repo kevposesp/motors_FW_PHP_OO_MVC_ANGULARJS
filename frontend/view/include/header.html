@@ -23,22 +23,23 @@
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
-            <li><a href="#/home" id="menu-home" class="module-menu" ng-class="{active: menuActive == 'home'}">Home</a></li>
-            <li><a href="#/shop" id="menu-shop" class="module-menu" ng-class="{active: menuActive == 'shop'}">Shop</a></li>
-            <li><a href="#/contact" id="menu-contact" class="module-menu" ng-class="{active: menuActive == 'contact'}">Contact Us</a></li>
-            <li class="menuheaderprofile">
+            <li><a href="#/home" id="menu-home" class="module-menu" ng-class="{active: menuActive == 'home'}">Home</a>
+            </li>
+            <li><a href="#/shop" id="menu-shop" class="module-menu" ng-class="{active: menuActive == 'shop'}">Shop</a>
+            </li>
+            <li><a href="#/contact" id="menu-contact" class="module-menu"
+                ng-class="{active: menuActive == 'contact'}">Contact Us</a></li>
+            <li class="menuheaderprofile" ng-class="{active: menu_but}" ng-click="controlMenuInf()">
               <div class="main-white-button">
-                <a href="#/auth">
+                <a>
                   <i>
-                    <img id="img_butt_menu" alt="" src="frontend/view/images/user.png">
+                    <img id="img_butt_menu" alt="" src="{{img_usr}}">
                   </i>
-                  <div id="username_butt_menu">
-
-                    Iniciar / Registrar</div>
+                  <div id="username_butt_menu">{{username}}</div>
                 </a>
               </div>
               <div class="desp-div-auth">
-                <div class="option" id="option-logout" data-tr="LogOut">LogOut</div>
+                <div class="option" id="option-logout" data-tr="LogOut" ng-click="logout()">LogOut</div>
               </div>
               <!-- <div class="main-white-button"><a><i class="fa fa-plus"></i> Add Your Listing</a></div> -->
             </li>
@@ -59,11 +60,55 @@
       <option value="val" id="btn-val">val</option>
     </select>
   </div> -->
-  <div class="cont_search_home" id="cont_search_homent"></div>
+  <div class="cont_search_home" id="cont_search_homent" ng-show="search">
+    <form id="search-form">
+      <div id="search-row" class="row">
+        <div id="search-row-col-att" class="col-lg-3 align-self-center">
+          <fieldset id="col-att-fieldset">
+            <select id="col-att-select" class="form-select" ng-model="attSelected" ng-change="actAtt(attSelected)">
+              <option>Select attribute</option>
+              <option ng-repeat="attribute in attributes" value="{{attribute}}">{{attribute.name_attribute}}</option>
+            </select>
+          </fieldset>
+        </div>
+        <div id="search-row-col-brand" class="col-lg-2 align-self-center">
+          <fieldset id="col-brand-fieldset">
+            <select id="col-brand-select" class="form-select" ng-model="brandSelected" ng-change="actBrand(brandSelected)">
+              <option selected="selected" value="0">Select brand</option>
+              <option ng-repeat="brand in brands" value="{{brand}}">{{brand.name_mark}}</option>
+            </select>
+          </fieldset>
+        </div>
+        <div id="search-row-col-text" class="col-lg-2 align-self-center">
+          <fieldset id="col-text-fieldset">
+            <input id="col-input-text-search" type="text" placeholder="Enter a city" class="searchText" ng-model="autocomplete" ng-change="key_autocomplete()" ng-click="changeAutoShow()" ng-class="{active: autoShow}">
+            <div id="search-auto-complete-cont" class="auto-complete-cont">
+              <div id="city-0" city="Olleria" class="cityAuto" ng-repeat="city in cities" ng-click="setCity()">{{city.city_car}}</div>
+            </div>
+          </fieldset>
+        </div>
+        <div id="search-row-col-order" class="col-lg-2 align-self-center">
+          <fieldset id="col-order-fieldset">
+            <select id="col-order-select" class="form-select" ng-model="orderSelected" ng-change="actOrder(orderSelected)">
+              <option selected="selected" value="km">Km</option>
+              <option value="price">Price</option>
+            </select>
+          </fieldset>
+        </div>
+        <div id="search-row-col-button" class="col-lg-3">
+          <fieldset id="col-button-fieldset">
+            <button type="button" id="main-button" class="main-button" ng-click="setFiltersSearch()">
+              <i class="fa fa-search" aria-hidden="true"></i> Search now
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
   <!-- <div class="cont_search_home" id="cont_search"></div> -->
 </header>
 <!-- ***** Header Area End ***** -->
-<script>
+<!-- <script>
   function loadButtonProfile() {
     var conf = {}
     conf.url = friendlyURL('?page=auth&op=infBut')
@@ -97,4 +142,4 @@
         })
         
     }
-</script>
+</script> -->

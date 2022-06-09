@@ -1,5 +1,5 @@
 app.factory('servicesLS', ['services', '$rootScope', (services, $rootScope) => {
-    let service = {getLS, setLS};
+    let service = {getLS, setLS, logout, removeFilters };
     return service;
     
     function getLS(nm) {
@@ -13,5 +13,13 @@ app.factory('servicesLS', ['services', '$rootScope', (services, $rootScope) => {
 
     function setLS(nm, data) {
         localStorage.setItem(nm, data)
+    }
+
+    function logout() {
+        localStorage.removeItem('token')
+    }
+
+    function removeFilters() {
+        localStorage.removeItem('filters')
     }
 }])

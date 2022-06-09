@@ -1,4 +1,4 @@
-app.controller('shopController', ($scope, $rootScope, shopService, servicesLS, filters, cars) => {
+app.controller('shopController', ($scope, $rootScope, $location, shopService, servicesLS, filters, cars) => {
     var items_page = 4, total_prod = cars.count, actpage = 1
 
     $scope.changePagination = function (id = 'pag') {
@@ -103,7 +103,7 @@ app.controller('shopController', ($scope, $rootScope, shopService, servicesLS, f
 
     $scope.cars = cars.data
 
-    $scope.loadDetails = function() {
+    $scope.loadDetails = function () {
         // console.log(this.car);
         location.href = "#/shop/car/" + this.car['data'].id_car;
     }
@@ -159,4 +159,28 @@ app.controller('shopController', ($scope, $rootScope, shopService, servicesLS, f
     }
     loadMap()
     loadMarkers()
+
+    $scope.likeDislike = function () {
+        if (servicesLS.getLS('token')) {
+            if (this.car['data'].liked != null) {
+                this.car['data'].liked = null
+            } else {
+                this.car['data'].liked = this.car['data'].id_car
+            }
+            shopService.setUnsetLike(this.car['data'].id_car)
+                .then((data) => {
+                    console.log(data);
+                })
+        } else {
+            $location.path('/auth')
+        }
+
+    }
+
+    $scope.emptyFilters = function () {
+        servicesLS.removeFilters()
+        // loadCars()
+        // $location.path('/shop')
+        window.location.reload()
+    }
 })

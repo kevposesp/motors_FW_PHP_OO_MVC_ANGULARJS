@@ -5114,6 +5114,8 @@ header .lang {
   background-color: #e9ecef;
   padding: 0 5px;
   border-radius: 100%;
+  position: absolute;
+  z-index: 120;
 }
 .row_shop_car .hover-content:hover {
   cursor: pointer;
