@@ -69,7 +69,7 @@ app.config(['$routeProvider', ($routeProvider) => {
         })
 }])
 
-app.run(($rootScope, services, $location, searchServices, servicesLS, service_auth0, authService) => {
+app.run(($rootScope, services, $location, searchServices, servicesLS, service_auth0, authService, secureService) => {
     service_auth0.auth_logg()
     
     var social_path = location.href.split("/")[5].split("=")[0]
@@ -83,7 +83,7 @@ app.run(($rootScope, services, $location, searchServices, servicesLS, service_au
                 if (servicesLS.getLS('token')) {
                     await services.post('auth', 'infBut').then((response) => {
                         // return response;
-                        console.log(response);
+                        // console.log(response);
                         $rootScope.usr_data = true
                         $rootScope.img_usr = response.img_user
                         $rootScope.username = response.username
@@ -109,7 +109,7 @@ app.run(($rootScope, services, $location, searchServices, servicesLS, service_au
         loadInf()
         var loc = $location.path().split('/')
         $rootScope.menuActive = loc[1]
-        $rootScope.search = loc[1] == 'home' || loca[1] == 'auth' ? false : true
+        $rootScope.search = loc[1] == 'home' || loc[1] == 'auth' ? false : true
     });
     $rootScope.menu_but = false
 
@@ -238,4 +238,44 @@ app.run(($rootScope, services, $location, searchServices, servicesLS, service_au
         }
 
     }
+
+    // Secure
+
+    secureService.actividad()
+    .then(function(data) {
+        if(!data) {
+            if(servicesLS.getLS('token')) {
+                $rootScope.logout()
+            }
+        }
+    })
+    secureService.refreshid()
+    secureService.refreshtoken()
+    .then(function(data) {
+        if (data) {
+            servicesLS.logout()
+        } else {
+            servicesLS.setLS('token', data)
+        }
+    })
+
+    setInterval(() => {
+        secureService.actividad()
+        .then(function(data) {
+            if(!data) {
+                if(servicesLS.getLS('token')) {
+                    $rootScope.logout()
+                }
+            }
+        })
+        secureService.refreshid()
+        secureService.refreshtoken()
+        .then(function(data) {
+            if (data) {
+                servicesLS.logout()
+            } else {
+                servicesLS.setLS('token', data)
+            }
+        })
+    }, 600000);
 })

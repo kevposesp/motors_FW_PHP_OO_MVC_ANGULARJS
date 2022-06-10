@@ -4,7 +4,7 @@ app.factory('servicesLS', ['services', '$rootScope', (services, $rootScope) => {
     
     function getLS(nm) {
         if(localStorage.getItem(nm)) {
-            console.log(localStorage.getItem(nm));
+            // console.log(localStorage.getItem(nm));
             return localStorage.getItem(nm)
         } else {
             return false;

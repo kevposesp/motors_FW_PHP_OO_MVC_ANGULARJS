@@ -1,15 +1,15 @@
-app.factory('contactServices', ['services', '$rootScope', (services, $rootScope, alertify) => {
+app.factory('contactServices', ['services', '$rootScope', (services, $rootScope) => {
     let service = { send };
     return service;
 
     function send(name, surname, email, message) {
-        services.post('contact', 'send', {
+        return services.post('contact', 'send', {
             name,
             surname,
             email,
             message
         }).then((response) => {
-            console.log(response);
+            return response
             // location.href = "#/home"
             // window.location.reload()
             // return;

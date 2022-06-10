@@ -77,7 +77,7 @@ app.controller('homeController', ($scope, $location, servicesLS, marks, categori
       
     }
     $scope.newsListar = newsListar
-    console.log(newsListar);
+    // console.log(newsListar);
   }
 
   setTimeout(

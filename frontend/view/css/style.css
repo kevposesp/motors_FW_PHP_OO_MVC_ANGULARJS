@@ -5047,6 +5047,13 @@ header .lang {
 .news-sec button {
   margin: 20px;
 }
+.news-sec .grid-container {
+  display: none;
+}
+.news-sec .grid-container.active {
+  display: -ms-inline-grid;
+  display: inline-grid;
+}
 
 .listing-page .menuk {
   margin-bottom: 15px;

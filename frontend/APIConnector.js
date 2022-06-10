@@ -11,7 +11,7 @@ app.factory('services', ['$http', '$q', ($http, $q) => {
             method: 'GET',
             url: to
         }).success((data, status, headers, config) => {
-            console.log(data);
+            // console.log(data);
             defered.resolve(data)
         }).error((data, status, headers, config) => {
             defered.reject(data)
@@ -28,7 +28,7 @@ app.factory('services', ['$http', '$q', ($http, $q) => {
             method: 'GET',
             url: servicesBase + module + '&op=' + funct
         }).success((data, status, headers, config) => {
-            console.log(data);
+            // console.log(data);
             defered.resolve(data)
         }).error((data, status, headers, config) => {
             defered.reject(data)
@@ -48,7 +48,7 @@ app.factory('services', ['$http', '$q', ($http, $q) => {
                 token: localStorage.getItem('token') || false
             }
         }).success((data, status, headers, config) => {
-            console.log(data);
+            // console.log(data);
             defered.resolve(data)
         }).error((data, status, headers, config) => {
             defered.reject(data)

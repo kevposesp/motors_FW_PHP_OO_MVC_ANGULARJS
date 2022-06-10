@@ -24,4 +24,10 @@
     button {
         margin: 20px;
     }
+    .grid-container {
+        display: none;
+        &.active {
+            display: inline-grid;
+        }
+    }
 }
