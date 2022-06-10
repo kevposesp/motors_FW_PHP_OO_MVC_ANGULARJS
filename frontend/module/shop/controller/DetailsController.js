@@ -38,7 +38,7 @@ app.controller('detailsController', ($scope, car, moreReleated) => {
             center: [-0.6063114551242474, 38.82434863048071], // starting position [lng, lat]
             zoom: 9 // starting zoom
         });
-        console.log(car);
+        // console.log(car);
         var element = {
             id: car.data[0].id_car,
             img: 'frontend/view/images' + car.imgs[0],

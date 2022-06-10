@@ -69,7 +69,7 @@ app.config(['$routeProvider', ($routeProvider) => {
         })
 }])
 
-app.run(($rootScope, services, $location, searchServices, servicesLS, service_auth0, authService, secureService) => {
+app.run(($rootScope, services, $location, searchServices, servicesLS, service_auth0, authService, secureService, toastr) => {
     service_auth0.auth_logg()
     
     var social_path = location.href.split("/")[5].split("=")[0]
@@ -146,7 +146,11 @@ app.run(($rootScope, services, $location, searchServices, servicesLS, service_au
         logout()
             .then(function () {
                 servicesLS.logout();
-                window.location.reload();
+                toastr.error('Inf', 'Has cerrado sesion')
+                setTimeout(() => {
+                    // window.location.reload();
+                    $location.path('/')
+                }, 1000);
             })
     }
 
@@ -240,24 +244,6 @@ app.run(($rootScope, services, $location, searchServices, servicesLS, service_au
     }
 
     // Secure
-
-    secureService.actividad()
-    .then(function(data) {
-        if(!data) {
-            if(servicesLS.getLS('token')) {
-                $rootScope.logout()
-            }
-        }
-    })
-    secureService.refreshid()
-    secureService.refreshtoken()
-    .then(function(data) {
-        if (data) {
-            servicesLS.logout()
-        } else {
-            servicesLS.setLS('token', data)
-        }
-    })
 
     setInterval(() => {
         secureService.actividad()

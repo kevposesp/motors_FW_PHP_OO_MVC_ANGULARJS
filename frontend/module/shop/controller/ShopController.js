@@ -53,7 +53,7 @@ app.controller('shopController', ($scope, $rootScope, $location, shopService, se
         var newCars;
         await shopService.getCars(items_page, (actpage - 1) * items_page, servicesLS.getLS('filters')).then((data) => {
             newCars = data
-            console.log(newCars);
+            // console.log(newCars);
             $scope.cars = newCars.data
             total_prod = newCars.count
             $scope.total_pages = load_pagination()
@@ -148,7 +148,7 @@ app.controller('shopController', ($scope, $rootScope, $location, shopService, se
         // console.log(currentMarkers);
         params.forEach(element => {
             var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-                `<img src="` + element.img + `"/><a href='#/shop/details/` + element.id + `'><h3>` + element.text + `</h3></a><p>` + element.price + ` €</p>`
+                `<img src="` + element.img + `"/><a href='#/shop/car/` + element.id + `'><h3>` + element.text + `</h3></a><p>` + element.price + ` €</p>`
             );
             var mark = new mapboxgl.Marker()
                 .setLngLat(element.coord)
@@ -169,9 +169,10 @@ app.controller('shopController', ($scope, $rootScope, $location, shopService, se
             }
             shopService.setUnsetLike(this.car['data'].id_car)
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                 })
         } else {
+            servicesLS.setLS('ll', 'shop')
             $location.path('/auth')
         }
 

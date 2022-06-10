@@ -52,11 +52,14 @@ app.factory('authService', ['services', '$rootScope', '$location', 'toastr', (se
     function signin(data) {
         // console.log(data);
         services.post('auth', 'signin', data).then((response) => {
-            // console.log(response);
             if (response['data']) {
-                
                 localStorage.setItem('token', response['data'])
-                window.location.reload()
+                if (localStorage.getItem('ll')) {
+                    $location.path(localStorage.getItem('ll'))
+                    localStorage.removeItem('ll')
+                } else {
+                    window.location.reload()
+                }
                 setTimeout(() => {
                    toastr.success('Social login', 'Has iniciado session')
                 }, 3000);

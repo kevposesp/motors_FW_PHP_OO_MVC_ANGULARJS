@@ -1,9 +1,5 @@
 <?php
     class controller_contact {
-        function view() {
-            common::load_view('top_page_contact.php', VIEW_PATH_CONTACT . 'contact.html');
-        }
-
         function send() {
             $res = true;
             $email['type'] = 'contact';

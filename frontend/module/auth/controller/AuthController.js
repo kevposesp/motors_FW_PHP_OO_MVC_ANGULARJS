@@ -1,4 +1,4 @@
-app.controller('authController', ($scope, $route, $rootScope, authService, service_auth0, serviceRegex, servicesLS, toastr) => {
+app.controller('authController', ($scope, $route, $rootScope, $location, authService, service_auth0, serviceRegex, servicesLS, toastr) => {
     $scope.rpa = false
     $scope.changeMenu = function () {
         $scope.rpa = !$scope.rpa
@@ -17,7 +17,13 @@ app.controller('authController', ($scope, $route, $rootScope, authService, servi
                         toastr.success('Login', 'Has iniciado correctamente')
                         servicesLS.setLS('token', data['data'])
                         setTimeout(() => {
-                            window.location.href = '#/home';
+                            if (localStorage.getItem('ll')) {
+                                $location.path(localStorage.getItem('ll'))
+                                localStorage.removeItem('ll')
+                            } else {
+                                $location.path('home')
+                                // window.location.href = '#/home';
+                            }
                         }, 3000);
                     } else if (!data['status'] && data['msg'] == 'err_verify') {
                         toastr.error('Login', 'No se ha verificado la cuenta')

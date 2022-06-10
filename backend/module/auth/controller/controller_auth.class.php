@@ -1,14 +1,9 @@
 <?php
     class controller_auth {
-        
-        function view() {
-            common::load_view('top_page_auth.php', VIEW_PATH_AUTH . 'auth.html');
-        }
-        
+       
         function controluser() {
             $token = MiddlewareAuth::middlewareAuth();
             echo json_encode($token);
-            // echo json_encode(common::load_model('auth_model', 'get_controluser', $token));
         }
 
         function login() {
@@ -25,7 +20,6 @@
 
         function infBut() {
             $token = MiddlewareAuth::middlewareAuth();
-            // echo json_encode($token);
             if($token) {
                 echo json_encode(common::load_model('auth_model', 'get_infBut', $token['data_id']));
             } else {

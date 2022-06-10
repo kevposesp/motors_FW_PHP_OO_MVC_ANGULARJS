@@ -4,6 +4,7 @@ app.factory('secureService', ['services', '$rootScope', (services, $rootScope) =
 
     function actividad() {
         return services.post('auth', 'actividad').then((response) => {
+            // console.log("actividad: " + response);
             return response;
         }, (err) => {
             console.log(err);
@@ -21,6 +22,7 @@ app.factory('secureService', ['services', '$rootScope', (services, $rootScope) =
 
     function refreshtoken() {
         return services.post('auth', 'refreshsesion').then((response) => {
+            // console.log("refreshsesion: " + response);
             return response;
         }, (err) => {
             console.log(err);
